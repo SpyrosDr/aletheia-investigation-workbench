@@ -76,14 +76,49 @@ function App() {
           />
         </label>
 
-        <label>
-          Evidence items
-          <textarea
-            value={evidence}
-            onChange={(e) => setEvidence(e.target.value)}
-            placeholder={"One item per line\ninvoice 1001\nvendor bank account\nemployee email"}
-          />
-        </label>
+        <h3>Evidence Items</h3>
+        
+        {evidenceItems.map((item, index) => (
+          <div
+            key={index}
+            style={{
+              border: "1px solid #ddd",
+              padding: "12px",
+              marginBottom: "12px",
+              borderRadius: "8px",
+            }}
+          >
+            <input
+              placeholder="Title"
+              value={item.title}
+              onChange={(e) =>
+                updateEvidence(index, "title", e.target.value)
+              }
+              style={{ width: "100%", marginBottom: "8px" }}
+            />
+        
+            <input
+              placeholder="Type (optional)"
+              value={item.type}
+              onChange={(e) =>
+                updateEvidence(index, "type", e.target.value)
+              }
+              style={{ width: "100%", marginBottom: "8px" }}
+            />
+        
+            <textarea
+              placeholder="Evidence details"
+              value={item.content}
+              onChange={(e) =>
+                updateEvidence(index, "content", e.target.value)
+              }
+            />
+          </div>
+        ))}
+        
+        <button type="button" onClick={addEvidenceItem}>
+          + Add Evidence Item
+        </button>
 
         <button onClick={assessCase} disabled={loading || !description}>
           {loading ? "Assessing..." : "Assess Case"}
