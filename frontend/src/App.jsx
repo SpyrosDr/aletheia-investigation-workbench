@@ -4,7 +4,9 @@ import "./App.css";
 function App() {
   const [context, setContext] = useState("Auditor reviewing possible vendor misuse");
   const [description, setDescription] = useState("");
-  const [evidence, setEvidence] = useState("");
+  const [evidenceItems, setEvidenceItems] = useState([
+    { title: "", content: "", type: "" }
+  ]);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
