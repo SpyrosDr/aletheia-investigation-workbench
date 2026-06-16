@@ -35,7 +35,9 @@ function App() {
       body: JSON.stringify({
         context,
         description,
-        evidence_items: evidenceItems,
+        evidence_items: evidenceItems.map(
+          (e) => `${e.title} ${e.content} ${e.type}`
+        ),
       }),
     });
 
