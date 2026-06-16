@@ -10,14 +10,22 @@ function App() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  function addEvidenceItem() {
+    setEvidenceItems([
+      ...evidenceItems,
+      { title: "", content: "", type: "" }
+    ]);
+  }
+
+  function updateEvidence(index, field, value) {
+    const updated = [...evidenceItems];
+    updated[index][field] = value;
+    setEvidenceItems(updated);
+  }
+
   async function assessCase() {
     setLoading(true);
     setResult(null);
-
-    const evidenceItems = evidence
-      .split("\n")
-      .map((item) => item.trim())
-      .filter(Boolean);
 
     const response = await fetch("/api/assess-case", {
       method: "POST",
