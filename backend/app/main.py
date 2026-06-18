@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 app = FastAPI(
-    title="AI-Assisted Fraud Investigation Workbench",
+    title="Aletheia Investigation Workbench",
     description="MVP backend for structured fraud investigation support.",
     version="0.1.0",
 )
