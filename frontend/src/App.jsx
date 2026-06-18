@@ -49,7 +49,7 @@ function App() {
   return (
     <main className="page">
       <section className="card">
-        <p className="eyebrow">AI-Assisted Fraud Investigation Workbench</p>
+        <p className="eyebrow">Aletheia Investigation Workbench</p>
         <h1>Initial Case Assessment</h1>
         <p className="intro">
           Enter a short case description and supporting evidence. The workbench
