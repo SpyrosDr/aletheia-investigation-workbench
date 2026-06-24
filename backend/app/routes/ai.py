@@ -10,6 +10,6 @@ router = APIRouter(
 )
 
 
-@router.post("/assess-case")
+@router.post("/assess-case", response_model=CaseAssessmentResponse)
 def assess_case(case: CaseInput):
     return assess_case_risk(case)
