@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.schemas.case_schema import CaseInput
+from app.schemas.case_schema import CaseAssessmentResponse, CaseInput
 from app.services.ai_service import assess_case_risk
 
 
