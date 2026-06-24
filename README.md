@@ -1,114 +1,88 @@
 # Aletheia Investigation Workbench
 
-An early-stage, open-source workbench for organizing fraud-related evidence, mapping risk indicators, and drafting explainable investigation summaries.
+Aletheia Investigation Workbench is an AI-assisted fraud investigation backend designed to help investigators structure, assess, and document fraud-related cases.
 
-The goal is to support investigators, auditors, compliance teams, and fraud analysts with a structured place to capture case context, add evidence items, identify possible fraud patterns, and prepare clear next-step recommendations.
+The project is not intended to be a fraud detection engine, AML transaction monitoring system, or alert-generation platform. Instead, it focuses on the investigation phase after a suspicious case, alert, concern, or internal issue has already been identified.
 
-## Current Status
+The backend currently supports a case-based workflow where a user can provide:
 
-This project is currently an MVP/prototype.
+* an investigation context,
+* a case description,
+* evidence items or supporting notes.
 
-It includes:
+The system then returns an initial structured assessment, including risk indicators, suggested next steps, and a draft summary.
 
-- A React frontend for entering case context, case description, and multiple evidence items
-- A FastAPI backend for assessing a submitted case
-- Basic risk-indicator detection for vendor/procurement, account-related, and transaction-related signals
-- A simple draft summary and suggested next steps
+## Current MVP Scope
 
-The current backend logic is intentionally simple. The long-term direction is to evolve this into a more capable AI-assisted investigation workflow with better evidence handling, typology mapping, timelines, and explainable outputs.
+The current backend MVP includes:
 
-## Why This Exists
+* FastAPI backend setup,
+* case assessment endpoint,
+* modular route structure,
+* schema layer for request validation,
+* service layer for investigation logic,
+* initial AI route structure,
+* placeholder AI provider layer,
+* sample case folder for fake demonstration data.
 
-Fraud investigations often involve scattered notes, invoices, emails, transaction records, screenshots, and assumptions. Even early case assessment can become messy quickly.
+The active endpoint is:
 
-This project explores how an investigation workbench could help users:
-
-- Structure messy evidence into case-ready inputs
-- Identify possible fraud typologies and risk indicators
-- Build a timeline of relevant events
-- Document assumptions, gaps, and next steps
-- Produce clear, reviewable investigation summaries
-
-## Planned Direction
-
-Near-term ideas include:
-
-- Cleaner two-panel investigation layout
-- Evidence list and evidence timeline
-- Optional evidence categories with automatic classification later
-- Case typology library, such as vendor fraud, account takeover, AML red flags, insider misuse, and document manipulation
-- Better scoring logic and clearer explanations
-- Exportable case summaries
-- Example synthetic fraud cases for testing and demonstration
-
-Longer-term ideas include:
-
-- AI-assisted evidence classification
-- AI-assisted timeline construction
-- Entity extraction for people, companies, accounts, invoices, and transactions
-- Investigation checklist generation
-- Analyst review controls and audit trail concepts
-
-## Important Note
-
-This project is not ready for real confidential investigations.
-
-Use only synthetic, anonymized, or demo data. Do not upload real sensitive case material, personal data, banking data, client records, or confidential documents.
-
-## Tech Stack
-
-- Frontend: React with Vite
-- Backend: FastAPI
-- Language: JavaScript and Python
-
-## Run Locally
-
-### Backend
-
-```bash
-cd backend
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python3 -m uvicorn app.main:app --reload
+```txt
+POST /ai/assess-case
 ```
 
-The backend runs on:
+This endpoint accepts a case context, description, and evidence items, then returns a basic risk assessment.
 
-```text
-http://127.0.0.1:8000
+## Intended Investigation Workflow
+
+The long-term workflow is:
+
+```txt
+Case creation
+↓
+Evidence intake
+↓
+Entity extraction
+↓
+Timeline construction
+↓
+Fraud typology mapping
+↓
+Risk assessment
+↓
+Investigation summary
+↓
+Case package
 ```
 
-### Frontend
+The AI component is intended to support, not replace, the investigator. Human review remains central to all conclusions.
 
-```bash
-cd frontend
-npm install
-npm run dev -- --host 0.0.0.0
-```
+## Planned Features
 
-The frontend usually runs on:
+Planned backend features include:
 
-```text
-http://localhost:5173
-```
+* case creation and storage,
+* evidence item management,
+* mock AI provider,
+* real AI provider integration,
+* entity extraction,
+* timeline generation,
+* risk assessment,
+* report generation,
+* fake sample cases for testing and demonstration,
+* safe configuration using environment variables.
 
-## How To Contribute
+## Security and Data Handling
 
-This project is still small, so the best contributions are practical and focused.
+This repository should contain only source code and fake sample evidence.
 
-Useful areas include:
+It should never contain:
 
-- Improving the frontend layout and user experience
-- Adding better evidence-item handling
-- Creating synthetic fraud case examples
-- Improving the backend assessment logic
-- Adding tests
-- Writing documentation for fraud typologies and investigation workflows
-- Suggesting realistic investigation features from audit, compliance, AML, or fraud-prevention experience
+* real API keys,
+* real customer data,
+* real investigation files,
+* real financial records,
+* confidential evidence,
+* production credentials.
 
-If you are not sure where to start, open an issue with an idea or improvement suggestion.
-
-## License
-
-MIT License.
+Local secrets should be stored in a `.env` file, which must not be committed to GitHub. Public configuration examples should be stored in `.env.example`.
